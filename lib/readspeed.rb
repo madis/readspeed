@@ -1,5 +1,5 @@
 require "readspeed/version"
+require_relative 'readspeed/tracker'
 
 module Readspeed
-  # Your code goes here...
 end

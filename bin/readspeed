@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << './lib'
+require 'readspeed'
+
+if ARGV.length == 1
+  file_name = title = ARGV.first
+else
+  print "What are you reading?"
+  title = gets.chomp
+  file_name = nil
+end
+
+tracker = Readspeed::Tracker.new(title)
+tracker.file_name = file_name
+tracker.start

@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Madis Nõmme"]
   spec.email         = ["me@mad.is"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Records your reading speed and provides summary}
+  spec.description   = %q{Small cli to track your reading speed to push yourself read more and faster}
+  spec.homepage      = "https://github.com/madis/readspeed"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
