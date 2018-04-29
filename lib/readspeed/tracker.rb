@@ -4,15 +4,16 @@ module Readspeed
   class Tracker
     attr_accessor :file_name
 
-    def initialize(title)
+    def initialize(title, input: $stdin, output: $stdout)
+      @input = input
+      @output = output
       @pages = 0
       @times = []
       @title = title
-      @input = nil
     end
 
     def start
-      puts "#{help_info}\n Starting recording. Press [ENTER] when you finish reading page."
+      output.puts "#{help_info}\n Starting recording. Press [ENTER] when you finish reading page."
       while true do
         start_time = Time.now
         case read_command
@@ -33,6 +34,8 @@ module Readspeed
 
     private
 
+    attr_reader :input, :output
+
     COMMANDS = {
       quit: %w(q quit),
       pause: %w(p pause),
@@ -49,13 +52,13 @@ module Readspeed
 
     def read_command
       status = @paused ? "(paused)" : "#{@pages}"
-      print "#{status}> "
-      input = STDIN.gets.chomp
-      if @paused && input == ''
+      output.print "#{status}> "
+      user_input = input.gets.chomp
+      if @paused && user_input == ''
         @paused = false
         selected_command = :resume
       else
-        selected_command = expanded_commands[input]
+        selected_command = expanded_commands[user_input]
       end
       selected_command
     end
@@ -63,7 +66,7 @@ module Readspeed
     def record_next_page(start_time, end_time)
       @pages += 1
       @times << end_time - start_time
-      puts summary
+      output.puts summary
     end
 
     def help_info
@@ -79,7 +82,7 @@ module Readspeed
     end
 
     def write_summary_to_file
-      puts "Writing summary to #{file_name}"
+      output.puts "Writing summary to #{file_name}"
       if File.exist?(file_name)
         reading_summary = YAML.load(File.read(file_name))
       else
