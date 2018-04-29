@@ -1,5 +1,7 @@
 # Readspeed
 
+[![CircleCI](https://circleci.com/gh/madis/readspeed.svg?style=svg)](https://circleci.com/gh/madis/readspeed)
+
 Cli tool that records your reading speed and provides summary.
 
 ![Example usage](docs/readspeed-usage.gif)
